@@ -40,7 +40,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Junjyoti Changmai",
-  "license": "ISC",
+  "license": "Apache License 2.0",
   "dependencies": {
     "axios": "^1.9.0",
     "jsdom": "^26.1.0"

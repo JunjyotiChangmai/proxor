@@ -20,7 +20,7 @@ npm install proxor
 
 ```javascript
 const {
-  getCodechefData,
+  getCodeChefData,
   getCodeforcesData,
   getGFGData,
   getLeetcodeData

@@ -69,6 +69,10 @@ async function getLeetcodeData( username ) {
             }
         );
 
+        if(userResponse.data.data.matchedUser === null) {
+            return {"message": "not found", "status": 404};
+        }
+
         // leetcode user contest data fetching using leetcode graphQL
         const contetResponse = await axios.post(
             'https://leetcode.com/graphql',
@@ -112,18 +116,18 @@ async function getLeetcodeData( username ) {
             }
         );
 
-        if (userResponse.status === 200 && contetResponse.status === 200) {
-            // leetcode userdata
-            const userResData = userResponse.data.data.matchedUser;
-            const userContestResData = contetResponse.data.data;
-
-            const userProfileData = ({...userResData, ...userContestResData});
-
-            console.log(userProfileData)
-            return userProfileData;
-        } else {
-            return "Not Found";
+        if(contetResponse.data.data.matchedUser === null) {
+            return {"message": "not found", "status": 404};
         }
+
+        // leetcode userdata
+        const userResData = userResponse.data.data.matchedUser;
+        const userContestResData = contetResponse.data.data;
+
+        const userProfileData = ({...userResData, ...userContestResData});
+
+        console.log(userProfileData)
+        return userProfileData;
 }
 
 module.exports = getLeetcodeData;

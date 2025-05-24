@@ -9,7 +9,7 @@ async function getCodeChefData( username ) {
         const response = await fetch(targetUrl);
         const CCProfile = await fetch(codechefAPI).then(response => response.json()).then(data => data);
 
-        if (response.ok) {
+        if (response.ok && CCProfile.status != 404) {
             const d = await response.text();
             const data = { data: d };
             const dom = new JSDOM(data.data);
@@ -24,7 +24,7 @@ async function getCodeChefData( username ) {
             return userProfileData;
         }
         else {
-            return "Not Found";
+            return {"message": "not found", "status": 404};
         }
 }
 

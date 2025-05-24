@@ -7,6 +7,11 @@ async function getCodeforcesData( username ) {
 
         // Geting user data from official api of Codeforces
         const userData = await fetch(getUserdataUrl).then(response => response.json()).then(data => data);
+        
+        if(userData.status === 'FAILED') {
+            return {"message": "not found", "status": 404};
+        }
+
         const userSubHistory = await fetch(userSubmissionHistoryUrl).then(response => response.json()).then(data => data);
         const userRatingList = await fetch(userRatingListUrl).then(response => response.json()).then(data => data);
 

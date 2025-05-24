@@ -7,7 +7,7 @@ async function getGFGData( username ) {
 
     const response = await fetch(gfgURL);
 
-    if (response.ok) {
+    if (response.status != 404) {
         const d = await response.text();
         const data = { data: d };
         const dom = new JSDOM(data.data);
@@ -52,7 +52,7 @@ async function getGFGData( username ) {
         return userProfileData;
     }
     else {
-        return "Not Found";
+        return {"message": "not found", "status": 404};
     }
 }
 
