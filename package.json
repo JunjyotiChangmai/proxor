@@ -1,6 +1,6 @@
 {
   "name": "proxor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Node.js utility to fetch and analyze user profiles from multiple coding platforms including LeetCode, GeeksForGeeks, Codechef and Codeforces.",
   "keywords": [
     "geeksforgeeks",
