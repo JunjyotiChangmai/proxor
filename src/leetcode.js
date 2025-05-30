@@ -126,7 +126,10 @@ async function getLeetcodeData( username ) {
 
         const userProfileData = ({...userResData, ...userContestResData});
 
-        console.log(userProfileData)
+        userProfileData.profile.problemSolved = userProfileData.submitStats.acSubmissionNum.find(
+            stat => stat.difficulty === 'All'
+        )?.count || 0;
+
         return userProfileData;
 }
 

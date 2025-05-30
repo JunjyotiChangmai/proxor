@@ -1,3 +1,6 @@
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+
 // Codeforce data handle
 async function getCodeforcesData( username ) {
         // Official API of Codeforces
@@ -35,13 +38,26 @@ async function getCodeforcesData( username ) {
             value: dateCounts[date]
         }));
 
+
+        const targetUrl = `https://codeforces.com/profile/${username}`;
+        const response = await fetch(targetUrl);
+        const d = await response.text();
+        const data = { data: d };
+        const dom = new JSDOM(data.data);
+        const document = dom.window.document;
+        const problemSolvedElement = document.querySelector('._UserActivityFrame_counterValue').innerHTML.split(" ")[0];
+
+        
+        const problemSolved = parseInt(problemSolvedElement);
+
         const userProfileData = {
             userInfo: userData.result,
             heatMap: heatMapData,
             ratingData: userRatingList.result,
         };
 
-        console.log(userProfileData)
+        userProfileData.userInfo[0].problemSolved = problemSolved || 0
+
         return userProfileData;
 }
 

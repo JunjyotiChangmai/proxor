@@ -48,7 +48,6 @@ async function getGFGData( username ) {
             ratingData: userData.contestData.user_contest_data.contest_data,
         }
 
-        console.log(userProfileData)
         return userProfileData;
     }
     else {
